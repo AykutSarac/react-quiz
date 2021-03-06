@@ -3,11 +3,8 @@ import styled, { css } from 'styled-components/macro'
 import Button from './Button';
 
 const Intro = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10em auto;
-  width: fit-content;
+  margin-top: 8em;
+  text-align: center;
 `;
 
 const btnCSS = css`

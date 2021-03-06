@@ -5,34 +5,41 @@ import GameOver from './GameOver';
 
 const QuizWindow = styled.div`
     text-align: center;
-    margin: 5em auto;
     font-size: clamp(20px, 2.5vw, 24px);
+    margin-top: 10vh;
 `;
 
 const Options = styled.div`
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 70%;
     margin: 2em auto;
+
+    @media screen and (min-width: 1180px) {
+        width: 50%;
+    }
 `;
 
 const Option = styled.button`
     display: block;
     border: 1px solid #616A94;
-    border-radius: 50px;
+    border-radius: 15px;
     padding: 15px 30px;
     text-decoration: none;
     color: #616A94;
     background-color: #161A31;
     transition: 0.3s;
     font-size: 1em;
-    cursor: pointer;
     outline: none;
+    user-select: none;
     margin-top: 1em;
-
-    &:hover {
-        color: white;
-        background-color: #616A94;
+    cursor: pointer;
+    
+    @media screen and (min-width: 1180px) {
+        &:hover {
+            color: white;
+            background-color: #616A94;
+        }
     }
 `;
 
@@ -53,8 +60,8 @@ const Quiz = () => {
 
         let userAnswer = e.target.outerText;
 
-        if (quiz[number].answer === userAnswer) setPts(pts+1);
-        setNumber(number+1);
+        if (quiz[number].answer === userAnswer) setPts(pts + 1);
+        setNumber(number + 1);
     }
 
     useEffect(() => {
@@ -78,17 +85,17 @@ const Quiz = () => {
 
     return (
         <QuizWindow>
-            { quiz[number] && 
-            
-            <>
-                <Question dangerouslySetInnerHTML={{__html: quiz[number].question}}></Question>
+            { quiz[number] &&
 
-                <Options>
-                    {quiz[number].options.map((item, index) => (
-                        <Option onClick={pickAnswer} dangerouslySetInnerHTML={{__html: item}} key={index}></Option>
-                    ))}
-                </Options>
-            </>
+                <>
+                    <Question dangerouslySetInnerHTML={{ __html: quiz[number].question }}></Question>
+
+                    <Options>
+                        {quiz[number].options.map((item, index) => (
+                            <Option key={index} dangerouslySetInnerHTML={{ __html: item }} onClick={pickAnswer}></Option>
+                        ))}
+                    </Options>
+                </>
 
             }
             {
